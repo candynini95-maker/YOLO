@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 4
+names: ['AI', 'Big hole', 'Small hole', 'tel logo']
+
+roboflow:
+  workspace: new-workspace-azjgb
+  project: find-tel-logo
+  version: dataset
+  license: Public Domain
+  url: https://universe.roboflow.com/new-workspace-azjgb/find-tel-logo/dataset/dataset

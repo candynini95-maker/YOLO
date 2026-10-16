@@ -1,0 +1,7 @@
+
+path: C:\Users\candy\OneDrive\Desktop\TEL_Robot_Vision\dataset
+train: images/train
+val: images/train  # 資料少時，先讓驗證集等於訓練集
+
+names:
+  0: TEL_logo
