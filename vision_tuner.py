@@ -54,12 +54,13 @@ def main():
 
         for result in results:
             for box in result.boxes:
-                x1, y1, x2, y2 = map(int, box.xyxy)
+                coords = box.xyxy[0].tolist() if hasattr(box.xyxy[0], 'tolist') else box.xyxy[0]
+                x1, y1, x2, y2 = map(int, coords)
                 cx, cy = int((x1 + x2) / 2), int((y1 + y2) / 2)
                 if all(np.linalg.norm(np.array([cx, cy]) - np.array(e)) > 30 for e in detected_tels):
                     detected_tels.append((cx, cy))
 
-        detected_tels = sorted(detected_tels, key=lambda x: x)
+        detected_tels = sorted(detected_tels, key=lambda x: x[0])
 
         # 畫出偵測到的基準點 TEL
         for idx, (cx, cy) in enumerate(detected_tels):
@@ -68,15 +69,15 @@ def main():
 
         # 🎯 核心幾何盲推（只要車體相機抓到左右兩個 TEL）
         if len(detected_tels) >= 2:
-            p1, p3 = detected_tels, detected_tels[-1]
-            base_width = p3 - p1 # 基準寬度（車子靠近時會變大、遠離時會變小，達成自動縮放）
+            p1, p3 = detected_tels[0], detected_tels[-1]
+            base_width = p3[0] - p1[0] # 基準寬度（車子靠近時會變大、遠離時會變小，達成自動縮放）
 
             if base_width > 30:
                 for r_idx, r_off in enumerate(row_offsets):
                     for c_idx, c_off in enumerate(col_offsets):
                         # 根據滑桿即時計算出的比例，推算虛擬洞口坐標
-                        hole_x = int(p1 + base_width * c_off)
-                        hole_y = int(p1 + base_width * r_off)
+                        hole_x = int(p1[0] + base_width * c_off)
+                        hole_y = int(p1[1] + base_width * r_off)
 
                         # 在畫面上即時渲染綠色預測點
                         cv2.circle(frame, (hole_x, hole_y), 5, (0, 255, 0), -1)
