@@ -131,3 +131,4 @@ class YOLODetector:
             ))
 
         return detected_objects
+

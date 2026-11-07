@@ -157,3 +157,4 @@ class VisionPipeline:
         if self.renderer is not None:
             self.renderer.close_all()
         print("✅ [VisionPipeline] Shutdown complete.")
+

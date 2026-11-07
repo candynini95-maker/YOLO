@@ -118,3 +118,4 @@ async def receive_vision_target(data: VisionPayload):
    * **優點**：解耦徹底、視覺崩潰不影響底盤運動控制，且可在 Windows/筆電遠端運算視覺，只將瞄準結果傳回機器人。
 2. **直接代碼庫內嵌模式**：
    * 未來若將本專案目錄納入 `TELBot-Host/vision/`，可直接 `from tel_vision import VisionPipeline`，在同一個 Python 程序內呼叫 `pipeline.process_frame(frame)`，省去 HTTP 網路序列化開銷。
+

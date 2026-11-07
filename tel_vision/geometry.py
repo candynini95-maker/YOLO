@@ -91,3 +91,4 @@ class GeometryProjector:
             normal_vector=(down_x, down_y),
             dynamic_mask=dynamic_mask
         )
+

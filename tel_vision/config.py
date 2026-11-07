@@ -81,3 +81,4 @@ class VisionConfig:
             http_sender=HttpSenderConfig(**{k: v for k, v in http_data.items() if hasattr(HttpSenderConfig, k)}),
             system=SystemConfig(**{k: v for k, v in system_data.items() if hasattr(SystemConfig, k)}),
         )
+

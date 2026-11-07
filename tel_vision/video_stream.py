@@ -107,3 +107,4 @@ class VideoStream:
             self.cap = None
         self.is_opened = False
         print("🔌 [VideoStream] Released video capture.")
+

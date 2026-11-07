@@ -110,3 +110,4 @@ class HUDRenderer:
     def close_all(self):
         """Destroy all OpenCV windows."""
         cv2.destroyAllWindows()
+
